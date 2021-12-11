@@ -1,8 +1,8 @@
-// The Second commit
-import javax.tools.Tool;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-class SignInUpWindowSub extends Frame {
+class SignInUpWindowSub extends JFrame {
 
     private Label iDlabel = new Label("ID");
     private Label passWordLabel = new Label("Password");
@@ -26,6 +26,7 @@ class SignInUpWindowSub extends Frame {
         this.setLocation((int)(dimension.getWidth() / 2 - dimension1.getWidth() / 2),
                 (int)(dimension.getHeight() / 2 - dimension1.getHeight() / 2));
         this.setVisible(true);
+
     }
 
     private void init() {
@@ -46,17 +47,33 @@ class SignInUpWindowSub extends Frame {
         panel2.add(signUpButton);
         panel1.add(panel2);
         this.add("Center", panel1);
+
+        signUpButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+//                try {
+//                    new SignUpWindowSub(null);
+//                } catch (FileNotFoundException ex) {
+//                    ex.printStackTrace();
+//                }
+            }
+        });
     }
 
-//    private void start() {
-//    }
+    private void start() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
 }
 
 public class SignInUpWindow {
     public static void main(String[] args) {
 
-        SignInUpWindowSub exeSignInUpWindow = new SignInUpWindowSub("LogIn");
+        SignInUpWindowSub exeSignInUpWindow = new SignInUpWindowSub(null);
 
     }
 }
+
+
