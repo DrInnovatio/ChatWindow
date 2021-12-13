@@ -1,17 +1,14 @@
 import java.awt.*;
-import java.io.*;
+import javax.tools.Tool;
 import javax.swing.*;
-import java.awt.event.*;
-import java.util.Objects;
 
-class SignUpWindowSub extends JFrame {
+class SignUpWindowSub extends Frame {
 
     private Label emaillabel = new Label("ID");
     private Label passWordLabel = new Label("Password");
     private Label passWordAgainLabel = new Label(("Password again"));
-    private Label warning = new Label();
 
-    private JTextField emailField = new JTextField();
+    private TextField emailField = new TextField();
     private TextField passTextField = new TextField();
     private TextField passWordAgainLabelField = new TextField();
 
@@ -19,13 +16,8 @@ class SignUpWindowSub extends JFrame {
     private Button checkEmail = new Button("Check the Email");
 
     private BorderLayout borderLayout = new BorderLayout(5,5);
-    private BufferedReader br = new BufferedReader(new FileReader("aaa.txt"));
-    private BufferedWriter bw = new BufferedWriter(new FileWriter("bbb.txt"));
 
-    private BufferedReader br2 = new BufferedReader(new FileReader("aaa.txt"));
-
-    public SignUpWindowSub(String str) throws IOException {
-
+    public SignUpWindowSub(String str){
         super(str);
         this.init();
         //this.start();
@@ -36,56 +28,7 @@ class SignUpWindowSub extends JFrame {
         this.setLocation((int)(dimension.getWidth() / 2 - dimension1.getWidth() / 2),
                 (int)(dimension.getHeight() / 2 - dimension1.getHeight() / 2));
         this.setVisible(true);
-    }
 
-    private void ApproveMembership(){
-
-        checkEmail.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String contentLine = null;
-
-                try {
-                    contentLine = br.readLine();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                System.out.println(contentLine);
-
-                String emailA = emailField.getText();
-
-                    if(Objects.equals(emailA, contentLine)){
-                        System.out.println("Sorry, the ID already exists.");
-                        String c = "the ID already exists.";
-                        warning.setText(c);
-
-                    } else {
-                        System.out.println("You can join.");
-                        String c = "You can join.";
-                        warning.setText(c);
-                    }
-                }
-        });
-
-        signUpButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String k = String.valueOf(passTextField.getText());
-                String q = String.valueOf(passWordAgainLabelField.getText());
-
-                System.out.println("Sign up clicked");
-
-                if(Objects.equals(k, q)){
-                    System.out.println("Join and enjoy now.");
-                } else {
-                    System.out.println("The passwords do not match.");
-                }
-            }
-        });
     }
 
     private void init() {
@@ -94,7 +37,7 @@ class SignUpWindowSub extends JFrame {
         panel.add(emaillabel);
         panel.add(passWordLabel);
         panel.add(passWordAgainLabel);
-        panel.add(warning);
+        //panel.add(new Label());
         this.add("West", panel);
 
         Panel panel1 = new Panel(new GridLayout(5,1,5,5));
@@ -111,22 +54,16 @@ class SignUpWindowSub extends JFrame {
         panel1.add(panel2);
         this.add("Center", panel1);
 
-        signUpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        ApproveMembership();
     }
 
     private void start() {
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
 }
 
 public class SignUpWindow {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         SignUpWindowSub exeSignInUpWindow = new SignUpWindowSub("Sign UP! Join us today!!");
 
