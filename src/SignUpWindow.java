@@ -15,8 +15,6 @@ class SignUpWindowSub extends JFrame {
     private TextField passTextField = new TextField();
     private TextField passWordAgainLabelField = new TextField();
 
-
-
     private Button signUpButton = new Button("Sign Up");
     private Button checkEmail = new Button("Check the Email");
 
@@ -58,17 +56,17 @@ class SignUpWindowSub extends JFrame {
 
                 String emailA = emailField.getText();
 
-                if(Objects.equals(emailA, contentLine)){
-                    System.out.println("Sorry, the ID already exists.");
-                    String c = "the ID already exists.";
-                    warning.setText(c);
+                    if(Objects.equals(emailA, contentLine)){
+                        System.out.println("Sorry, the ID already exists.");
+                        String c = "the ID already exists.";
+                        warning.setText(c);
 
-                } else {
-                    System.out.println("You can join.");
-                    String c = "You can join.";
-                    warning.setText(c);
+                    } else {
+                        System.out.println("You can join.");
+                        String c = "You can join.";
+                        warning.setText(c);
+                    }
                 }
-            }
         });
 
         signUpButton.addActionListener(new ActionListener() {
@@ -88,7 +86,6 @@ class SignUpWindowSub extends JFrame {
                 }
             }
         });
-
     }
 
     private void init() {
