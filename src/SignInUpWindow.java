@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 class SignInUpWindowSub extends JFrame {
 
@@ -53,11 +55,11 @@ class SignInUpWindowSub extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-//                try {
-//                    new SignUpWindowSub(null);
-//                } catch (FileNotFoundException ex) {
-//                    ex.printStackTrace();
-//                }
+                try {
+                    new SignUpWindowSub(null);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
