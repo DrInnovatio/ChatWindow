@@ -16,15 +16,22 @@ class SignUpWindowSub extends JFrame {
     private TextField passWordAgainLabelField = new TextField();
 
 
-
     private Button signUpButton = new Button("Sign Up");
     private Button checkEmail = new Button("Check the Email");
 
     private BorderLayout borderLayout = new BorderLayout(5,5);
-    private BufferedReader br = new BufferedReader(new FileReader("aaa.txt"));
-    private BufferedWriter bw = new BufferedWriter(new FileWriter("bbb.txt"));
 
-    private BufferedReader br2 = new BufferedReader(new FileReader("aaa.txt"));
+    private BufferedReader br = new BufferedReader(new FileReader("ids.txt"));
+    private BufferedReader passwordsReaded = new BufferedReader(new FileReader("passwords.txt"));
+    private BufferedReader br2 = new BufferedReader(new FileReader("ids.txt"));
+
+    private BufferedWriter bw = new BufferedWriter(new FileWriter("bbb.txt"));
+    private String toBeWrite = emailField.getText() + " , " + passWordAgainLabelField.getText();
+
+
+
+
+
 
     public SignUpWindowSub(String str) throws IOException {
 
@@ -83,10 +90,26 @@ class SignUpWindowSub extends JFrame {
 
                 if(Objects.equals(k, q)){
                     System.out.println("Join and enjoy now.");
+
                 } else {
                     System.out.println("The passwords do not match.");
                 }
+
+                PrintWriter fw = null;
+                try {
+                    fw = new PrintWriter("ids.txt", "UTF-8");
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    bw.write(passWordAgainLabel.getText());
+                    bw.newLine();
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } finally {
+                    fw.close();
+                }
+                new MainChatWindowSub(null);
             }
+
         });
 
     }
@@ -123,7 +146,6 @@ class SignUpWindowSub extends JFrame {
     }
 
     private void start() {
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
